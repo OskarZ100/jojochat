@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&family=Funnel+Display:wght@300..800&family=Jersey+15&family=Share+Tech+Mono&family=Varela+Round&display=swap');
+
+* {
+    font-family: "Funnel Display", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.unselectable{
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+#welcome-box{
+    overflow: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: clamp(300px, 70vw, 1200px);
+    height: clamp(300px, 70vh, 1200px);
+    background-color: white;
+}
+
+#welcome-box div{
+    display: inline-block;
+
+}
+
+
+#welcome-content-holder{
+
+}
+
+#welcome-content-holder h1{
+    font-size: clamp(3rem, 7vw, 5rem);
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+.transparent-background{
+    background-color: rgba(0, 0, 0, 0.655);
+}
+
+#welcome-pfp-holder{
+    margin-bottom: 3rem;
+}
+
+#welcome-pfp-holder img{
+    width: 50%;
+    height: 50%;
+    border-radius: 45%;
+    transition: all 0.3s ease-in-out;
+}
+
+#welcome-pfp-holder img:hover{
+    cursor: pointer;
+    border-radius: 0%;
+}
+
+
+#welcome-name, button {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+button {
+    background: #000;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #333;
+}
+
+#welcome-name, input{
+    margin-bottom: 0.2rem;
+}
+

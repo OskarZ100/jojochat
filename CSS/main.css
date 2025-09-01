@@ -30,6 +30,7 @@ body{
     width: clamp(300px, 70vw, 1200px);
     height: clamp(300px, 70vh, 1200px);
     background-color: white;
+    z-index: 11;
 }
 
 #welcome-box div{
@@ -38,9 +39,29 @@ body{
 }
 
 
-#welcome-content-holder{
-
+#overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
 }
+
+#loading{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    z-index: 12;
+    display: none;
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+
 
 #welcome-content-holder h1{
     font-size: clamp(3rem, 7vw, 5rem);

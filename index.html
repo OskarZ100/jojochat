@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="CSS/main.css">
 </head>
-<body class="transparent-background">
+<body>
     <div id="welcome-box">
         <div id="welcome-content-holder">
             <h1 class="unselectable">WELCOME</h1>
@@ -14,10 +14,19 @@
                 <img class="unselectable" src="images/pfps/test.png">
             </div>
             <form action="">
-                <input type="text" id="welcome-name" name="username" maxlength="15" autocomplete="username" value="Username"><br>
+                <input type="text" id="welcome-name" name="username" maxlength="15" autocomplete="none" value="Username"><br>
                 <button class="unselectable" type="submit">ENTER</button>
             </form>
         </div>
+    </div>
+    <div id="overlay" class="transparent-background"></div>
+    <div id="loading">Connecting to chat...</div>
+
+
+    <div id="chat-ui" style="display:none;">
+        <input type="text" id="message-input" placeholder="Type your message">
+        <button onclick="sendMessage()">Send</button>
+        <div id="chat-messages"></div>
     </div>
     <script src="JS/main.js"></script>
 </body>

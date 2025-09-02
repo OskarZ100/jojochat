@@ -23,10 +23,23 @@
     <div id="loading">Connecting to chat...</div>
 
 
+    <div class="unselectable" id="menu-bar">
+        <div id="chat-title"><h1>JOJO CHAT</h1></div>
+        <div class="menu-box-option" id="menu-information-box">INFO</div>
+        <div class="menu-box-option" id="menu-store-box">STORE</div>
+        <div class="menu-box-option" id="menu-ora-box">ORA!</div>
+        <div class="menu-box-option" id="menu-horse-box">HORSE</div>
+        <div class="menu-box-option" id="menu-account-box">ACCOUNT</div>
+    </div>
+
+    
     <div id="chat-ui" style="display:none;">
-        <input type="text" id="message-input" placeholder="Type your message">
-        <button onclick="sendMessage()">Send</button>
         <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            <input type="text" id="message-input" placeholder="Type your message">
+            <button class="unselectable" onclick="sendMessage()">Send</button>
+        </div>
+        
     </div>
     <script src="JS/main.js"></script>
 </body>

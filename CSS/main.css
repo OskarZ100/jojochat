@@ -114,7 +114,15 @@ button:hover {
 }
 
 #loggedIn-name{
+    position: absolute;
+    left: 55%;
     margin-left: clamp(18vw, 25vw, 27vw); 
+    background-color: #2c2c2c;
+    color: white;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    display: inline-block;
 }
 
 
@@ -137,9 +145,15 @@ button:hover {
 }
 
 #chat-messages{
+    height: 80vh;
     overflow: auto;
 }
 
+#chat-messages div{
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
 
 
 
@@ -182,4 +196,24 @@ button:hover {
 #chat-title {
     text-align: center;
     margin-bottom: 2rem;
+}
+
+#info-ui{
+    display: none;
+}
+
+#store-ui{
+    display: none;
+}
+
+#ora-ui{
+    display: none;
+}
+
+#horse-ui{
+    display: none;
+}
+
+#account-ui{
+    display: none;
 }

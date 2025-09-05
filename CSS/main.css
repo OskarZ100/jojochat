@@ -260,3 +260,75 @@ button:hover {
     display: none;
     margin-left: clamp(18vw, 25vw, 27vw); 
 }
+
+
+
+
+#ora-ui {
+    padding: 0;
+    text-align: center;
+}
+
+#ora-clicker {
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    user-select: none;
+    transition: transform 0.1s;
+    margin-bottom: 8rem;
+    margin-top: 6rem;
+}
+
+#ora-clicker img{
+    width: 14rem;
+    height: 13rem;
+}
+
+#ora-clicker:hover{
+    cursor: pointer;
+}
+
+#ora-clicker:active {
+  transform: scale(0.95);
+}
+
+#ora-buttons-container {
+    flex-direction: row;
+    display: flex;
+    align-items: center;   
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center; 
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#ora-buttons-container div{
+    border: 2px solid black;
+    width: 8rem;
+    height: 2rem;
+    font-size: smaller;
+}
+
+#ora-buttons-container div:hover{
+    cursor: pointer;
+}
+
+#ora-amt, #ora-perSecond {
+  font-size: 1.2rem;
+  margin: 0.5rem;
+}
+
+#ora-header{
+    margin: 0;
+    background-color: rgb(30, 0, 89);
+    color: whitesmoke;
+}

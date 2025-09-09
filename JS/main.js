@@ -2,6 +2,11 @@ let username = "";
 let ws;
 let pfp = "images/pfps/test.png";
 let currentScreen = 0; 
+let oraPoints = 0;
+let oraCPScost = 10;
+let oraClickcost = 10;
+let clickPower = 1;
+let pointsPerSecond = 0;
 
 const buttons = [
     { id: "menu-chat-box", screen: 0, name: "chat", ui:"chat-ui" },
@@ -113,7 +118,7 @@ function loggedIn(username){
     const header = document.createElement('h2');
     header.id = "loggedIn-name";
     header.textContent = `Logged in as: ${username}`;
-    document.body.appendChild(header);
+    //document.body.appendChild(header);
     startWebSocket();
 }
 
@@ -134,3 +139,53 @@ buttons.forEach(btn => {
         }
     });
 });
+
+
+
+
+//update the ora UI
+function updateOraUI(){
+    document.getElementById("ora-amt").textContent = `TOTAL - ${oraPoints}`;
+    document.getElementById("ora-perSecond").textContent = `${pointsPerSecond}/s`;
+    document.getElementById("ora-clickUp").textContent = `Upgrade Click - $${oraClickcost}`;
+    document.getElementById("ora-secondUp").textContent = `Upgrade CPS - $${oraCPScost}`;
+}
+
+function click(){
+    oraPoints += clickPower;
+    console.log(clickPower);
+    document.getElementById("ora-amt").textContent = `TOTAL - ${oraPoints}`;
+}
+
+document.getElementById("ora-clicker").addEventListener('click', (event) =>{
+    click();
+});
+
+document.getElementById("ora-clickUp").addEventListener('click', (event) => {
+    if(oraPoints >= oraClickcost){
+        oraPoints -= oraClickcost;
+        //increase the amount of the cost
+        clickPower = Math.floor((clickPower) * 1.5);
+        oraClickcost = Math.floor(oraClickcost * 2);
+        updateOraUI();
+    }else{
+        alert("you broke!!!");
+    }
+});
+
+document.getElementById("ora-secondUp").addEventListener('click', (event) => {
+    if(oraPoints >= oraCPScost){
+        oraPoints -= oraCPScost;
+        //increase the amount of the cost
+        pointsPerSecond = Math.floor((pointsPerSecond + 1) * 1.3);
+        oraCPScost = Math.floor(oraCPScost * 1.8);
+        updateOraUI();
+    }else{
+        alert("you broke!!!");
+    }
+});
+
+setInterval(() => {
+    oraPoints += pointsPerSecond;
+    updateOraUI();
+}, 1000);

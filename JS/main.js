@@ -149,12 +149,14 @@ function updateOraUI(){
     document.getElementById("ora-perSecond").textContent = `${pointsPerSecond}/s`;
     document.getElementById("ora-clickUp").textContent = `Upgrade Click - $${oraClickcost}`;
     document.getElementById("ora-secondUp").textContent = `Upgrade CPS - $${oraCPScost}`;
+    document.getElementById("profile-ora").textContent = `ORA POINTS: ${oraPoints}`;
 }
 
 function click(){
     oraPoints += clickPower;
     console.log(clickPower);
     document.getElementById("ora-amt").textContent = `TOTAL - ${oraPoints}`;
+    document.getElementById("profile-ora").textContent = `ORA POINTS: ${oraPoints}`;
 }
 
 document.getElementById("ora-clicker").addEventListener('click', (event) =>{
@@ -165,7 +167,7 @@ document.getElementById("ora-clickUp").addEventListener('click', (event) => {
     if(oraPoints >= oraClickcost){
         oraPoints -= oraClickcost;
         //increase the amount of the cost
-        clickPower = Math.floor((clickPower) * 1.5);
+        clickPower = Math.floor((clickPower+1) * 1.5);
         oraClickcost = Math.floor(oraClickcost * 2);
         updateOraUI();
     }else{

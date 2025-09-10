@@ -332,3 +332,64 @@ button:hover {
     background-color: rgb(30, 0, 89);
     color: whitesmoke;
 }
+
+
+#account-header{
+    margin: 0;
+    background-color: #555;
+    color: honeydew;
+    font-weight: bold;
+    font-size: 3vw;
+    text-align: center;
+}
+
+#stats-section{
+    background-color: #2c2c2c;
+    height: 100vh;
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
+
+#profile-holder{
+    position: fixed;
+    right: 10rem;
+    top: 6rem;
+}
+
+#profile-holder img{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 25%;
+    border: 2px solid white;
+}
+
+#profile-ora, #profile-horse-won, #stats-section h1{
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+
+#pfp-collection{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+#effect-collection{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+#pfp-collection,#effect-collection{
+    border: 2px solid white;
+    text-align: center;
+    width: 40vw;
+}
+
+#pfp-collection img{
+    width: 4rem;
+    height: 4rem;
+}

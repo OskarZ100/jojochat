@@ -7,14 +7,62 @@ let oraCPScost = 10;
 let oraClickcost = 10;
 let clickPower = 1;
 let pointsPerSecond = 0;
+let account_pfps = [];
+let account_effects = [];
+let currentEffect = "none";
+
+const casePfpStorage = [
+    //common pfps
+    {name: "Speedwagon", source: ""},
+    {name: "Zeppeli", source: ""},
+    {name: "Smokey", source: ""},
+    {name: "Koichi", source: ""},
+    {name: "Hayato", source: ""},
+    {name: "Shigechi", source: ""},
+    {name: "Pesci", source: ""},
+    {name: "Formaggio", source: ""},
+    //rare pfps 
+    {name: "Dante (Young)", source: ""},
+    {name: "Nero (DT)", source: ""},
+    {name: "Lady", source: ""},
+    {name: "V", source: ""},
+    {name: "Lucia", source: ""},
+    {name: "Arkham", source: ""},
+    {name: "Jester", source: ""},
+    {name: "Trish", source: ""},
+    //ledgenary pfps
+    {name: "Giorno (GER)", source: ""},
+    {name: "Vergil (Sin DT)", source: ""},
+    {name: "samuel hyde", source: ""},
+    {name: "Dante (DMC5)", source: ""},
+    {name: "DIO (Over Heaven)", source: ""},
+    {name: "Nero (Young)", source: ""},
+    {name: "Kars (Ultimate)", source: ""},
+    {name: "hmmmm", source: ""},
+
+    //effects
+    {name: "Bruh", source: ""},
+    {name: "dmc reference", source: ""},
+    {name: "activation word", source: ""},
+    //rare
+    {name: "za wardo", source: ""},
+    {name: "snipe", source: ""},
+    {name: "coming through", source: ""},
+    //legend
+    {name: "got a city to brun", source: ""},
+    {name: "joeyy", source: ""},
+    {name: "lobotomy", source: ""},
+]
+
+
 
 const buttons = [
     { id: "menu-chat-box", screen: 0, name: "chat", ui:"chat-ui" },
     { id: "menu-information-box", screen: 1, name: "information", ui:"info-ui" },
     { id: "menu-store-box", screen: 2, name: "store", ui:"store-ui"},
     { id: "menu-ora-box", screen: 3, name: "ora mini game", ui:"ora-ui"},
-    { id: "menu-horse-box", screen: 4, name: "horse betting", ui:"horse-ui"},
-    { id: "menu-account-box", screen: 5, name: "account", ui:"account-ui"}
+    //{ id: "menu-horse-box", screen: 4, name: "horse betting", ui:"horse-ui"},
+    { id: "menu-account-box", screen: 4, name: "account", ui:"account-ui"}
 
 ];
 /*
@@ -64,7 +112,7 @@ function displayMessage(data) {
 
     //css in here to make it a little more readable
     const textProfile = document.createElement('img');
-    textProfile.src = pfp;
+    textProfile.src = data.pfp;
     textProfile.style.width = "30px"; // Size the image
     textProfile.style.height = "30px";
     textProfile.style.borderRadius = "50%";
@@ -92,7 +140,8 @@ function sendMessage() {
     if (text && text.length <= maxLength) {
         const data = {
             user: username,
-            text: text
+            text: text,
+            pfp: pfp
         };
         ws.send(JSON.stringify(data));
         input.value = '';
@@ -191,3 +240,107 @@ setInterval(() => {
     oraPoints += pointsPerSecond;
     updateOraUI();
 }, 1000);
+
+
+
+
+document.querySelectorAll('.store-option').forEach(option => {
+  option.addEventListener('click', () => {
+    const type = option.dataset.type; // "pfp" or "effect"
+    const item = option.dataset.item; // item ID
+    let cost = 0;
+    switch(item){
+        case "case1":
+            cost = 1;
+            break;
+        case "case2":
+            cost = 200;
+            break;
+        case "case3":
+            cost = 300;
+            break;
+    } 
+
+
+    if (oraPoints >= cost) {
+      oraPoints -= cost;
+      updateOraUI();
+      // Add to user's inventory based on type
+      if (type === "pfp") {
+        unlockPFP(item);
+      } else if (type === "effects") {
+        unlockEffect(item);
+      }
+    } else {
+      alert("Not enough ORA points!");
+    }
+  });
+});
+
+
+
+
+
+function unlockEffect(item){
+    var unlocked = "";
+    let index;
+    switch(item){
+        case "case1":
+            index = Math.floor(Math.random() * 3) + 24;
+            break;
+        case "case2":
+            index = Math.floor(Math.random() * 3) + 27;
+            break;
+        case "case3": 
+            index = Math.floor(Math.random() * 3) + 30;
+            break;
+    }
+    console.log(casePfpStorage[index]);
+    account_effects.push(casePfpStorage[index]);
+    let adding = document.createElement('h1');
+    adding.textContent = casePfpStorage[index].name;
+    adding.addEventListener('click', () => {
+        currentEffect = casePfpStorage[index].name; 
+        document.getElementById("current-effect").textContent = currentEffect; 
+    });
+    document.getElementById("effect-collection").appendChild(adding);
+}
+
+function unlockPFP(item){
+    var unlocked = "";
+    let index;
+    switch(item){
+        case "case3":
+            index = Math.floor(Math.random() * 8) + 16;
+            break;
+        case "case2":
+            index = Math.floor(Math.random() * 8) + 8;
+            break;
+        case "case1":
+                index = Math.floor(Math.random() * 8);
+            break;
+    }
+    console.log(casePfpStorage[index]);
+    account_pfps.push(casePfpStorage[index]);
+    let adding = document.createElement('img');
+    adding.src = casePfpStorage[index].source;
+
+    adding.addEventListener('click', () => {
+        pfp = casePfpStorage[index].source; // Change global pfp
+        document.getElementById("current-pfp").src = pfp; // Update account preview
+    });
+
+
+    document.getElementById("pfp-collection").appendChild(adding);
+}
+
+
+document.getElementById("first-pfp").addEventListener('click', () => {
+    pfp = "images/pfps/test.png"; 
+    document.getElementById("current-pfp").src = pfp; 
+});
+
+document.getElementById("first-effect").addEventListener('click', () => {
+    currentEffect = "none"; 
+    document.getElementById("current-effect").textContent = currentEffect; 
+});

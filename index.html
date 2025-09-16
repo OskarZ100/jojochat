@@ -29,7 +29,7 @@
         <div class="menu-box-option" id="menu-information-box">INFO</div>
         <div class="menu-box-option" id="menu-store-box">STORE</div>
         <div class="menu-box-option" id="menu-ora-box">ORA!</div>
-        <div class="menu-box-option" id="menu-horse-box">HORSE</div>
+        <!--<div class="menu-box-option" id="menu-horse-box">HORSE</div>-->
         <div class="menu-box-option" id="menu-account-box">ACCOUNT</div>
     </div>
 
@@ -60,20 +60,20 @@
     <div id="store-ui">
         <div id="store-header">
             <h1>WELCOME TO THE STORE</h1>
-            <p>Use your ORA points to purchase items for the chat</p>
+            <p>Use your ORA points to purchase items for the chat(1-100,2-200,3-300)</p>
         </div>
         <div id="store-container">
             <div class="store-selection" id="store-pfps">
                 <h1>EFFECTS</h1>
-                <div class="store-option">CASE 1</div>
-                <div class="store-option">CASE 2</div>
-                <div class="store-option">CASE 3</div>
+                <div class="store-option" data-type="effects" data-item="case1">CASE 1</div>
+                <div class="store-option" data-type="effects" data-item="case2">CASE 2</div>
+                <div class="store-option" data-type="effects" data-item="case3">CASE 3</div>
             </div>
             <div class="store-selection" id="store-effects">
                 <h1>PFPS</h1>
-                <div class="store-option">CASE 1</div>
-                <div class="store-option">CASE 2</div>
-                <div class="store-option">CASE 3</div>
+                <div class="store-option" data-type="pfp" data-item="case1">CASE 1</div>
+                <div class="store-option" data-type="pfp" data-item="case2">CASE 2</div>
+                <div class="store-option" data-type="pfp" data-item="case3">CASE 3</div>
             </div>
         </div>
 
@@ -92,6 +92,7 @@
             <div id="ora-swapChar">STAR PLATNIUM</div>
         </div>
     </div>
+    <!--
     <div id="horse-ui">
         <div id="horse-header">
             <h1>!HORSE BETTING!</h1>
@@ -113,25 +114,25 @@
             <div id="horse-bet-go">GO</div>
         </div>
     </div>
-
+-->
     <div id="account-ui">
         <div id="account-header">ACCOUNT: </div>
 
         <div id="stats-section">
             <h2 id="profile-ora">ORA POINTS: 0</h2>
-            <h2 id="profile-horse-won">HORSE BETS WON: 0</h2>
             <h1>PFPS:</h1>
             <div id="pfp-collection">
-                <img src="images/pfps/test.png">
+                <img id="first-pfp" src="images/pfps/test.png">
             </div>
             <h1>Effects:</h1>
             <div id="effect-collection">
-                <h1>none</h1>
+                <h1 id="first-effect">none</h1>
             </div>
         </div>
 
         <div id="profile-holder">
-            <img src="images/pfps/test.png">
+            <img id="current-pfp" src="images/pfps/test.png">
+            <h1 id="current-effect">none</h1>
         </div>
     </div>
 

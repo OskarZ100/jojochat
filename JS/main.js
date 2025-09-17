@@ -13,45 +13,45 @@ let currentEffect = "none";
 
 const casePfpStorage = [
     //common pfps
-    {name: "Speedwagon", source: ""},
-    {name: "Zeppeli", source: ""},
-    {name: "Smokey", source: ""},
-    {name: "Koichi", source: ""},
-    {name: "Hayato", source: ""},
-    {name: "Shigechi", source: ""},
-    {name: "Pesci", source: ""},
-    {name: "Formaggio", source: ""},
+    {name: "Speedwagon", source: "images/pfps/speedwagon.jpg"},
+    {name: "Zeppeli", source: "images/pfps/zeppeli.webp"},
+    {name: "Smokey", source: "images/pfps/smokey.jpg"},
+    {name: "Koichi", source: "images/pfps/koichi.jpg"},
+    {name: "Hayato", source: "images/pfps/hayato.png"},
+    {name: "Shigechi", source: "images/pfps/Shigechi"},
+    {name: "Pesci", source: "images/pfps/Pesci.webp"},
+    {name: "Formaggio", source: "images/pfps/Formaggio.webp"},
     //rare pfps 
-    {name: "Dante (Young)", source: ""},
-    {name: "Nero (DT)", source: ""},
-    {name: "Lady", source: ""},
-    {name: "V", source: ""},
-    {name: "Lucia", source: ""},
-    {name: "Arkham", source: ""},
-    {name: "Jester", source: ""},
-    {name: "Trish", source: ""},
+    {name: "Dante (Young)", source: "images/pfps/Dante (Young).webp"},
+    {name: "Nero (DT)", source: "images/pfps/Nero (DT).jpg"},
+    {name: "Lady", source: "images/pfps/Lady.jpg"},
+    {name: "V", source: "images/pfps/V.jpg"},
+    {name: "Lucia", source: "images/pfps/Lucia.jpg"},
+    {name: "Arkham", source: "images/pfps/Arkham.webp"},
+    {name: "Jester", source: "images/pfps/Jester.jpg"},
+    {name: "Trish", source: "images/pfps/Trish.jpg"},
     //ledgenary pfps
-    {name: "Giorno (GER)", source: ""},
-    {name: "Vergil (Sin DT)", source: ""},
-    {name: "samuel hyde", source: ""},
-    {name: "Dante (DMC5)", source: ""},
-    {name: "DIO (Over Heaven)", source: ""},
-    {name: "Nero (Young)", source: ""},
-    {name: "Kars (Ultimate)", source: ""},
-    {name: "hmmmm", source: ""},
+    {name: "Giorno (GER)", source: "images/pfps/Giorno (GER).webp"},
+    {name: "Vergil (Sin DT)", source: "images/pfps/Vergil (Sin DT).jpg"},
+    {name: "samuel hyde", source: "images/pfps/samuel hyde.jpg"},
+    {name: "Dante (DMC5)", source: "images/pfps/Dante (DMC5).jpg"},
+    {name: "DIO", source: "images/pfps/DIO.jpg"},
+    {name: "Nero (Young)", source: "images/pfps/Nero (Young).webp"},
+    {name: "Kars (Ultimate)", source: "images/pfps/Kars (Ultimate).webp"},
+    {name: "hmmmm", source: "images/pfps/hmmm.webp"},
 
     //effects
-    {name: "Bruh", source: ""},
-    {name: "dmc reference", source: ""},
-    {name: "activation word", source: ""},
+    {name: "Bruh", source: "", trigger: "bruh"},
+    {name: "dmc reference", source: "", trigger: "devil may cry"},
+    {name: "activation word", source: "", trigger: "ronald mcdonald"},
     //rare
-    {name: "za wardo", source: ""},
-    {name: "snipe", source: ""},
-    {name: "coming through", source: ""},
+    {name: "za wardo", source: "", trigger: "the world"},
+    {name: "snipe", source: "", trigger: "sniped"},
+    {name: "nothing happens", source: "", trigger: "happen"},
     //legend
-    {name: "got a city to brun", source: ""},
-    {name: "joeyy", source: ""},
-    {name: "lobotomy", source: ""},
+    {name: "got a city to brun", source: "", trigger: "wake up"},
+    {name: "joeyy", source: "", trigger: "nice to be nice"},
+    {name: "lobotomy", source: "", trigger: "lobotomy"},
 ]
 
 
@@ -109,7 +109,9 @@ function startWebSocket() {
 function displayMessage(data) {
     const container = document.createElement('div'); // Main container
     container.style.display = "flex"; // Align image and text
+    if (currentEffect !== "none" && data.text.includes(currentEffect.trigger)) {
 
+    }
     //css in here to make it a little more readable
     const textProfile = document.createElement('img');
     textProfile.src = data.pfp;
@@ -300,8 +302,8 @@ function unlockEffect(item){
     let adding = document.createElement('h1');
     adding.textContent = casePfpStorage[index].name;
     adding.addEventListener('click', () => {
-        currentEffect = casePfpStorage[index].name; 
-        document.getElementById("current-effect").textContent = currentEffect; 
+        currentEffect = casePfpStorage[index]; 
+        document.getElementById("current-effect").textContent = currentEffect.name; 
     });
     document.getElementById("effect-collection").appendChild(adding);
 }

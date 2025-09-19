@@ -434,6 +434,9 @@ button:hover {
 }
 
 .store-option {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   background: #444;
   color: azure;
   padding: 1rem;
@@ -470,6 +473,22 @@ button:hover {
 }
 
 #effect-popup{
+    margin-left: clamp(18vw, 25vw, 27vw); 
+    z-index: 15;
     width: 100vw;
     height: 100vh;
+}
+
+#notif{
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s;
 }

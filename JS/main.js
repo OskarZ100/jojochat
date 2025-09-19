@@ -10,6 +10,7 @@ let pointsPerSecond = 0;
 let account_pfps = [];
 let account_effects = [];
 let currentEffect = "none";
+let currentlyPlayingEffect = false;
 
 const casePfpStorage = [
     //common pfps
@@ -105,13 +106,27 @@ function startWebSocket() {
     };
 }
 
+
+function playEffect(whichEffect){
+    console.log("play dat");
+}
+
 //Displaying the message onto the screen 
 function displayMessage(data) {
     const container = document.createElement('div'); // Main container
     container.style.display = "flex"; // Align image and text
-    if (currentEffect !== "none" && data.text.includes(currentEffect.trigger)) {
-
+    if (data.effectIndex !== -1) {
+        const effect = casePfpStorage[data.effectIndex];
+        if (!currentlyPlayingEffect) {
+            currentlyPlayingEffect = true;
+            playEffect(effect);
+            setTimeout(() => { 
+                currentlyPlayingEffect = false; 
+                console.log("stop");
+            }, 3000);
+        }
     }
+
     //css in here to make it a little more readable
     const textProfile = document.createElement('img');
     textProfile.src = data.pfp;
@@ -143,7 +158,9 @@ function sendMessage() {
         const data = {
             user: username,
             text: text,
-            pfp: pfp
+            pfp: pfp,
+            effectIndex: currentEffect !== "none" ? 
+                casePfpStorage.findIndex(item => item.trigger === currentEffect.trigger) : -1
         };
         ws.send(JSON.stringify(data));
         input.value = '';

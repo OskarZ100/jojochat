@@ -2,7 +2,7 @@ let username = "";
 let ws;
 let pfp = "images/pfps/test.png";
 let currentScreen = 0; 
-let oraPoints = 0;
+let oraPoints = 111110;
 let oraCPScost = 10;
 let oraClickcost = 10;
 let clickPower = 1;
@@ -42,17 +42,17 @@ const casePfpStorage = [
     {name: "hmmmm", source: "images/pfps/hmmm.webp"},
 
     //effects
-    {name: "Bruh", source: "", trigger: "bruh"},
-    {name: "dmc reference", source: "", trigger: "devil may cry"},
-    {name: "activation word", source: "", trigger: "ronald mcdonald"},
+    {name: "Bruh", source: "images/effects/bruhimage.jpg", trigger: "bruh", sound: "images/effects/brsf.mp3"},
+    {name: "dmc reference", source: "images/effects/dmcg.gif", trigger: "devil may cry", sound: "images/effects/sfdmc.mp3"},
+    {name: "activation word", source: "images/pfps/samuel hyde.jpg", trigger: "ronald mcdonald", sound: "images/effects/awsf.mp3"},
     //rare
-    {name: "za wardo", source: "", trigger: "the world"},
-    {name: "snipe", source: "", trigger: "sniped"},
-    {name: "nothing happens", source: "", trigger: "happen"},
+    {name: "za wardo", source: "images/effects/zwg.gif", trigger: "the world", sound: "images/effects/zaws.mp3"},
+    {name: "snipe", source: "images/effects/sng.gif", trigger: "sniped", sound: "images/effects/snsf.mp3"},
+    {name: "nothing happens", source: "images/effects/cb2.gif", trigger: "happen", sound: "images/effects/nhsf.mp3"},
     //legend
-    {name: "got a city to brun", source: "", trigger: "wake up"},
-    {name: "joeyy", source: "", trigger: "nice to be nice"},
-    {name: "lobotomy", source: "", trigger: "lobotomy"},
+    {name: "got a city to brun", source: "images/effects/js.gif", trigger: "wake up", sound: "images/effects/jssf.mp3"},
+    {name: "joeyy", source: "images/effects/jg.gif", trigger: "nice to be nice", sound: "images/effects/jsf.mp3"},
+    {name: "lobotomy", source: "images/effects/lg.gif", trigger: "lobotomy", sound: "images/effects/lobotsf.mp3"},
 ]
 
 
@@ -107,7 +107,13 @@ function startWebSocket() {
 }
 
 
-function playEffect(whichEffect){
+function playEffect(effect){
+    document.getElementById("effect-image").src = effect.source;
+    document.getElementById("effect-popup").style.display = "flex";
+    if (effect.sound) {
+        const audio = new Audio(effect.sound); 
+        audio.play();
+    }
     console.log("play dat");
 }
 
@@ -122,8 +128,9 @@ function displayMessage(data) {
             playEffect(effect);
             setTimeout(() => { 
                 currentlyPlayingEffect = false; 
+                document.getElementById("effect-popup").style.display = "none";
                 console.log("stop");
-            }, 3000);
+            }, 5000);
         }
     }
 
@@ -318,6 +325,22 @@ function unlockEffect(item){
     account_effects.push(casePfpStorage[index]);
     let adding = document.createElement('h1');
     adding.textContent = casePfpStorage[index].name;
+
+    const notif = document.createElement('div');
+    notif.id = "notif";
+    notif.textContent = casePfpStorage[index].name;
+    document.body.appendChild(notif);
+
+
+    setTimeout(() => notif.style.opacity = '1', 10);
+
+
+    setTimeout(() => {
+        notif.style.opacity = '0';
+        setTimeout(() => notif.remove(), 500);
+    }, 2000);
+
+
     adding.addEventListener('click', () => {
         currentEffect = casePfpStorage[index]; 
         document.getElementById("current-effect").textContent = currentEffect.name; 
@@ -343,6 +366,20 @@ function unlockPFP(item){
     account_pfps.push(casePfpStorage[index]);
     let adding = document.createElement('img');
     adding.src = casePfpStorage[index].source;
+    const notif = document.createElement('div');
+    notif.id = "notif";
+    notif.textContent = casePfpStorage[index].name;
+    document.body.appendChild(notif);
+
+
+    setTimeout(() => notif.style.opacity = '1', 10);
+
+
+    setTimeout(() => {
+        notif.style.opacity = '0';
+        setTimeout(() => notif.remove(), 500);
+    }, 2000);
+
 
     adding.addEventListener('click', () => {
         pfp = casePfpStorage[index].source; // Change global pfp
@@ -363,3 +400,4 @@ document.getElementById("first-effect").addEventListener('click', () => {
     currentEffect = "none"; 
     document.getElementById("current-effect").textContent = currentEffect; 
 });
+

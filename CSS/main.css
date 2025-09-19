@@ -460,3 +460,16 @@ button:hover {
     cursor: pointer;
     background-color: #555;
 }
+
+#chat-messages img{
+    transition: transform 0.3s;
+}
+
+#chat-messages img:hover{
+    transform: scale(2);
+}
+
+#effect-popup{
+    width: 100vw;
+    height: 100vh;
+}
